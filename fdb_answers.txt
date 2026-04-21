@@ -1,0 +1,10 @@
+
+Question 1: FDB decouples the TMS from the SS to follow a divide and conquer design as we learned in lecture. This allows for FDB to separate the write path in the TMS from the distributed storage read path allowing for this independent scaling. This separation of read and write allows for the elimination of many conflicts and also allows for easier scaling. 
+
+Question 2: The resolver is responsible for detecting read and write conflicts between concurrent transactions and helps to implement optimistic concurrent control by checking for these read and write conflicts. The transactionw ould be complted if there no conflcits however if there is a read/write conflict that specific transaction would be marked as aborted. 
+
+Question 3: By the FDB’s sequencer assigning both a read version and a commit version to each transaction, it ensures that all reads within a particular transaction correpsons to that verion. This allows for a consistent snapshot of the database through the support of serializable transactions
+
+Question 4: Snapshot reads do not trigger as a conflict detection as unlike standard reads they do not add to the transaction read conflict ranges. Standard reads may cause aborts due to the fact that they allow for conflict detection and in general Spanshot reads are great for many backround tasks where a user does not need strict serialization.
+
+Question 5: FDB’s recovery is said to be cheap as storage servers pull logs to avoid costly repalyiong of a redo log. This means that dueirng a normal operation committed transactions are written to these LogServers and they are kepty up to data to allow for recovery through  cheap process where the log replays are avoided.
